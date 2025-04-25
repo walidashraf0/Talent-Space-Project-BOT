@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "../ui/Navbar";
-import Sidebar from "../ui/Sidebar";
+import Sidebar from "../ui/sidebar";
 import { Bell } from "lucide-react";
 import { Button } from "../ui/button";
 

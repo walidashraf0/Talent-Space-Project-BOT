@@ -1,7 +1,6 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,6 +8,8 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "../hooks/use-toast";
+import TalentShowcase from "../components/showcase/TalentShowcase";
+import { supabase } from "@/integrations/supabase/client";
 
 export default function Profile() {
   const { user } = useAuth();
@@ -81,12 +82,12 @@ export default function Profile() {
           <Tabs defaultValue="info">
             <TabsList className="mb-4">
               <TabsTrigger value="info">Information</TabsTrigger>
-              {user.userType === "talent" && <TabsTrigger value="portfolio">Portfolio</TabsTrigger>}
-              {user.userType === "investor" && <TabsTrigger value="investments">Investments</TabsTrigger>}
+              {user.userType === "talent" && <TabsTrigger value="showcase">My Showcase</TabsTrigger>}
+              {user.userType === "investor" && <TabsTrigger value="investments">My Investments</TabsTrigger>}
               {user.userType === "mentor" && <TabsTrigger value="mentees">Mentees</TabsTrigger>}
             </TabsList>
 
-            <TabsContent value="info" className="space-y-4">
+            <TabsContent value="info">
               {isEditing ? (
                 <div className="space-y-4">
                   <div className="space-y-2">
@@ -131,26 +132,16 @@ export default function Profile() {
               )}
             </TabsContent>
 
-            <TabsContent value="portfolio" className="space-y-4">
-              <div className="flex justify-between items-center">
-                <h3 className="font-medium">My Showcase</h3>
-                <Button>Upload media</Button>
-              </div>
-              <div className="text-center py-10">
-                <p className="text-muted-foreground">No portfolio items yet</p>
-                <p className="text-sm text-muted-foreground mt-1">
-                  Upload photos or videos to showcase your talent
-                </p>
-              </div>
+            <TabsContent value="showcase">
+              <TalentShowcase />
             </TabsContent>
 
-            <TabsContent value="investments" className="space-y-4">
-              <h3 className="font-medium">My Investments</h3>
-              <div className="text-center py-10">
-                <p className="text-muted-foreground">No investments yet</p>
-                <p className="text-sm text-muted-foreground mt-1">
-                  Start investing in talents to see them listed here
-                </p>
+            <TabsContent value="investments">
+              <div className="space-y-4">
+                <h3 className="font-medium">My Investments</h3>
+                <div className="grid gap-4">
+                  {/* We'll fetch and display investments here */}
+                </div>
               </div>
             </TabsContent>
 
