@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "../hooks/use-toast";
-import TalentShowcase from "../components/showcase/TalentShowcase";
+import { TalentShowcase } from "../components/showcase/TalentShowcase";
 import { supabase } from "@/integrations/supabase/client";
 
 export default function Profile() {
